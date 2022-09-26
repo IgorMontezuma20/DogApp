@@ -5,6 +5,12 @@ pluginManagement {
         mavenCentral()
     }
 }
+
+//dependencies {
+//    classpath 'com.android.tools.build:gradle:3.4.2'
+//    claspath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0-alpha05'
+//}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
