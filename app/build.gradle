@@ -22,12 +22,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    dataBinding.enabled = true
+
+   viewBinding{
+       enabled = true
+   }
+
 }
+
 
 def lifecycleExtensionVersion = '1.1.1'
 def butterknifeVersion = '10.2.3'
@@ -38,7 +44,7 @@ def glideVersion = '4.10.0'
 def rxJavaVersion = '2.2.10'
 def rxAndroidVersion = '2.1.0'
 def roomVersion = '2.1.0-rc01'
-def navVersion = '2.1.0-alpha05'
+def navVersion = '2.5.2'
 def preferencesVersion = '1.0.0'
 
 dependencies {
@@ -58,7 +64,7 @@ dependencies {
 
     //Butterknife
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+   annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     //RxJava
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
@@ -72,6 +78,7 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment:$navVersion"
     implementation "androidx.navigation:navigation-ui:$navVersion"
+    implementation ("androidx.navigation:navigation-runtime:$navVersion")
 
     //Material
     implementation "com.google.android.material:material:1.6.1"

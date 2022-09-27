@@ -1,4 +1,4 @@
-package com.example.dogsapp.view;
+package com.example.dogsapp.view.view;
 
 import android.os.Bundle;
 
