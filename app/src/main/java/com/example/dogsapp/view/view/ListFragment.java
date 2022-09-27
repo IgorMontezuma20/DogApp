@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,10 @@ public class ListFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private void replaceNextFragment(){
+        //NavHostFragment.findNavController();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,11 +46,18 @@ public class ListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        NavController navController = Navigation.findNavController(view);
 
         fab.setOnClickListener(view1 -> {
-            navController.navigate(R.id.detailFragment);
+            onGoToDetails();
         });
+    }
+
+    void onGoToDetails(){
+
+        ListFragmentDirections.ActionDetails action = ListFragmentDirections.actionDetails();
+        action.setDogUuid(5);
+        Navigation.findNavController(fab).navigate(action);
+
     }
 
 
