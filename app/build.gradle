@@ -98,4 +98,7 @@ dependencies {
     //SharedPreferences
     implementation "androidx.preference:preference:$preferencesVersion"
 
+    //SwipeRefresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
 }
