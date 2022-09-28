@@ -26,8 +26,7 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.floatingActionButton2)
     FloatingActionButton fab2;
 
-    @BindView(R.id.textView2)
-    TextView tv2;
+
 
     private int dogUuid;
 
@@ -49,16 +48,9 @@ public class DetailFragment extends Fragment {
 
         if(getArguments() != null){
             dogUuid = DetailFragmentArgs.fromBundle(getArguments()).getDogUuid();
-            tv2.setText(String.valueOf(dogUuid));
-        }
-        fab2.setOnClickListener(view1 -> {
-            onGoToList();
-        });
-    }
 
-    private void onGoToList(){
-        NavDirections action = DetailFragmentDirections.actionList();
-        Navigation.findNavController(fab2).navigate(action);
+        }
+
     }
 
 }

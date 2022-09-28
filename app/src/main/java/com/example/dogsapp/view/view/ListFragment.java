@@ -22,17 +22,11 @@ import butterknife.ButterKnife;
 
 public class ListFragment extends Fragment {
 
-    @BindView(R.id.floatingActionButton)
-    FloatingActionButton fab;
+
 
     public ListFragment() {
         // Required empty public constructor
     }
-
-    private void replaceNextFragment(){
-        //NavHostFragment.findNavController();
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,24 +34,6 @@ public class ListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.bind(this, view);
         return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-        fab.setOnClickListener(view1 -> {
-            onGoToDetails();
-        });
-    }
-
-    void onGoToDetails(){
-
-        ListFragmentDirections.ActionDetails action = ListFragmentDirections.actionDetails();
-        action.setDogUuid(5);
-        Navigation.findNavController(fab).navigate(action);
-
     }
 
 
