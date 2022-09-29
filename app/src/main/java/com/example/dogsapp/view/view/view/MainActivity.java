@@ -1,4 +1,4 @@
-package com.example.dogsapp.view.view;
+package com.example.dogsapp.view.view.view;
 
 import static androidx.navigation.Navigation.findNavController;
 import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavController;

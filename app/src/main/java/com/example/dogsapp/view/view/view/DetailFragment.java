@@ -1,4 +1,4 @@
-package com.example.dogsapp.view.view;
+package com.example.dogsapp.view.view.view;
 
 import android.os.Bundle;
 
@@ -22,10 +22,6 @@ import butterknife.ButterKnife;
 
 
 public class DetailFragment extends Fragment {
-
-    @BindView(R.id.floatingActionButton2)
-    FloatingActionButton fab2;
-
 
 
     private int dogUuid;

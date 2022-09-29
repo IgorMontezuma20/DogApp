@@ -14,7 +14,7 @@
         android:theme="@style/Theme.DogsApp"
         tools:targetApi="31">
         <activity
-            android:name=".view.view.MainActivity"
+            android:name=".view.view.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
