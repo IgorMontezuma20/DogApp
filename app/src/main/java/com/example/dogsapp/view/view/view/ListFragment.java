@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.dogsapp.R;
+import com.example.dogsapp.databinding.FragmentListBinding;
 import com.example.dogsapp.view.view.model.DogBreed;
 import com.example.dogsapp.view.view.viewmodel.ListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,30 +35,21 @@ import butterknife.ButterKnife;
 
 public class ListFragment extends Fragment {
 
+    private FragmentListBinding binding;
+
     private ListViewModel viewModel;
     private DogsListAdapter dogsListAdapter = new DogsListAdapter(new ArrayList<>());
 
-    @BindView(R.id.dogsList)
-    RecyclerView dogsList;
-
-    @BindView(R.id.listError)
-    TextView listError;
-
-    @BindView(R.id.loadingView)
-    ProgressBar loadingView;
-
-    @BindView(R.id.refreshLayout)
-    SwipeRefreshLayout refreshLayout;
 
     public ListFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-        ButterKnife.bind(this, view);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        binding = FragmentListBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
         return view;
     }
 
@@ -65,34 +57,36 @@ public class ListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
         viewModel = ViewModelProviders.of(this).get(ListViewModel.class);
         viewModel.refresh();
 
-        dogsList.setLayoutManager(new LinearLayoutManager(getContext()));
-        dogsList.setAdapter(dogsListAdapter);
+        binding.dogsList.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.dogsList.setAdapter(dogsListAdapter);
         observeViewModel();
     }
 
     private void observeViewModel(){
         viewModel.dogs.observe(getViewLifecycleOwner(), dogs -> {
             if(dogs != null && dogs instanceof List){
-                dogsList.setVisibility(View.VISIBLE);
+                binding.dogsList.setVisibility(View.VISIBLE);
                 dogsListAdapter.updateDogsList(dogs);
             }
         });
 
         viewModel.dogLoadError.observe(getViewLifecycleOwner(), isError -> {
             if(isError != null && isError instanceof Boolean){
-                listError.setVisibility(isError ? View.VISIBLE : View.GONE);
+                binding.listError.setVisibility(isError ? View.VISIBLE : View.GONE);
             }
         });
 
         viewModel.loading.observe(getViewLifecycleOwner(), isLoading -> {
             if(isLoading != null && isLoading instanceof Boolean){
-                loadingView.setVisibility(isLoading ? View.VISIBLE :View.GONE );
+                binding.loadingView.setVisibility(isLoading ? View.VISIBLE :View.GONE );
                 if(isLoading){
-                    listError.setVisibility(View.GONE);
-                    dogsList.setVisibility(View.GONE);
+                    binding.listError.setVisibility(View.GONE);
+                    binding.listError.setVisibility(View.GONE);
                 }
             }
         });
