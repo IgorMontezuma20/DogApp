@@ -3,7 +3,7 @@ package com.example.dogsapp.view.view.model;
 public class DogBreed {
 
     public String breedId;
-    public String dogBredd;
+    public String dogBreed;
     public String lifeSpan;
     public String breedGroup;
     public String bredFor;
@@ -13,7 +13,7 @@ public class DogBreed {
 
     public DogBreed(String breedId, String dogBredd, String lifeSpan, String breedGroup, String bredFor, String temperament, String imageUrl) {
         this.breedId = breedId;
-        this.dogBredd = dogBredd;
+        this.dogBreed = dogBredd;
         this.lifeSpan = lifeSpan;
         this.breedGroup = breedGroup;
         this.bredFor = bredFor;
