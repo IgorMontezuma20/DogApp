@@ -1,12 +1,14 @@
 package com.example.dogsapp.view.view.model;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
 //@ColumnInfo é parte do ROOM
 
+@Entity
 public class DogBreed {
     @ColumnInfo(name = "breed_id")
     @SerializedName("id")
@@ -35,7 +37,7 @@ public class DogBreed {
     public String imageUrl;
 
     @PrimaryKey(autoGenerate = true)
-    public int uui;
+    public int uuid;
 
     public DogBreed(String breedId, String dogBredd, String lifeSpan, String breedGroup, String bredFor, String temperament, String imageUrl) {
         this.breedId = breedId;
