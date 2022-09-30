@@ -39,9 +39,9 @@ public class DogBreed {
     @PrimaryKey(autoGenerate = true)
     public int uuid;
 
-    public DogBreed(String breedId, String dogBredd, String lifeSpan, String breedGroup, String bredFor, String temperament, String imageUrl) {
+    public DogBreed(String breedId, String dogBreed, String lifeSpan, String breedGroup, String bredFor, String temperament, String imageUrl) {
         this.breedId = breedId;
-        this.dogBreed = dogBredd;
+        this.dogBreed = dogBreed;
         this.lifeSpan = lifeSpan;
         this.breedGroup = breedGroup;
         this.bredFor = bredFor;
