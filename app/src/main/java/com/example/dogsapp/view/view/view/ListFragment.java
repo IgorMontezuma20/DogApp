@@ -57,13 +57,19 @@ public class ListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         viewModel = ViewModelProviders.of(this).get(ListViewModel.class);
         viewModel.refresh();
 
         binding.dogsList.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.dogsList.setAdapter(dogsListAdapter);
+
+        binding.refreshLayout.setOnRefreshListener(() -> {
+            binding.dogsList.setVisibility(View.GONE);
+            binding.listError.setVisibility(View.GONE);
+            binding.loadingView.setVisibility(View.VISIBLE);
+            viewModel.refreshByPassCache();
+            binding.refreshLayout.setRefreshing(false);
+        });
         observeViewModel();
     }
 

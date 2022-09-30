@@ -52,6 +52,10 @@ public class ListViewModel extends AndroidViewModel {
         }
     }
 
+    public void refreshByPassCache(){
+        fetchFromRemote();
+    }
+
     private void fetchFromDatabase(){
         loading.setValue(true);
         retrieveTask = new RetrieveDogsTask();
