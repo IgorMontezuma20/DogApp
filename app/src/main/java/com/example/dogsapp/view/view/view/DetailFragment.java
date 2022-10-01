@@ -44,8 +44,8 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDetailBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
-        return view;
+        this.binding = binding;
+        return binding.getRoot();
     }
 
     @Override
