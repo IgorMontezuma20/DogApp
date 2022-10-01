@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,22 +10,15 @@
             type="com.example.dogsapp.view.view.model.DogBreed" />
 
         <variable
-            name="purpose"
-            type="com.example.dogsapp.view.view.model.DogBreed" />
-
-        <variable
-            name="temperament"
-            type="com.example.dogsapp.view.view.model.DogBreed" />
-
-        <variable
-            name="lifespan"
-            type="com.example.dogsapp.view.view.model.DogBreed" />
-
+            name="pallete"
+            type="com.example.dogsapp.view.view.model.DogPallete" />
     </data>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@{pallete.color}"
         tools:context=".view.view.view.DetailFragment">
 
         <ImageView
@@ -34,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="4dp"
+            android:imageurl="@{dog.imageUrl}"
             android:minHeight="200dp"
             android:scaleType="fitCenter"
-            android:imageurl="@{dog.imageUrl}"
             android:src="@mipmap/ic_dog_icon" />
 
         <TextView
@@ -47,8 +40,8 @@
             android:layout_below="@id/dogImage"
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
-            tools:text="Dog Breed"
-            android:text="@{dog.dogBreed}" />
+            android:text="@{dog.dogBreed}"
+            tools:text="Dog Breed" />
 
         <TextView
             android:id="@+id/dogPurpose"
@@ -61,8 +54,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
-            tools:text="Breed for"
-            android:text="@{dog.bredFor}" />
+            android:text="@{dog.bredFor}"
+            tools:text="Breed for" />
 
         <TextView
             android:id="@+id/dogTemperament"
@@ -75,8 +68,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
-            tools:text="Temperament"
-            android:text="@{dog.temperament}" />
+            android:text="@{dog.temperament}"
+            tools:text="Temperament" />
 
         <TextView
             android:id="@+id/dogLifespan"
@@ -86,8 +79,8 @@
             android:layout_below="@id/dogTemperament"
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
-            tools:text="Lifespan"
-            android:text="@{dog.lifeSpan}" />
+            android:text="@{dog.lifeSpan}"
+            tools:text="Lifespan" />
 
 
     </RelativeLayout>
