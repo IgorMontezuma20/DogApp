@@ -73,7 +73,7 @@ public class ListViewModel extends AndroidViewModel {
                             public void onSuccess(List<DogBreed> dogBreeds) {
                                 insertTask = new insertDogsaTask();
                                 insertTask.execute(dogBreeds);
-                                Toast.makeText(getApplication(), "dogs retrieved from endpoint", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplication(), "Dados recuperados da API", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -144,7 +144,7 @@ public class ListViewModel extends AndroidViewModel {
         @Override
         protected void onPostExecute(List<DogBreed> dogBreeds) {
             dogsRetrieved(dogBreeds);
-            Toast.makeText(getApplication(), "dogs retrieved from database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Dados recuperados do DB", Toast.LENGTH_SHORT).show();
 
         }
     }

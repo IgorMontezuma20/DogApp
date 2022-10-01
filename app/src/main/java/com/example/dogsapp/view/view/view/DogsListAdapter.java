@@ -20,7 +20,7 @@ import com.example.dogsapp.view.view.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.DogViewHolder> {
+public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.DogViewHolder> implements DogClickListener{
 
     private ArrayList<DogBreed> dogsList;
 
@@ -45,19 +45,18 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.DogVie
     @Override
     public void onBindViewHolder(@NonNull DogViewHolder holder, int position) {
         holder.itemview.setDog(dogsList.get(position));
-//        ImageView image = holder.itemview.findViewById(R.id.imageView);
-//        TextView name = holder.itemview.findViewById(R.id.name);
-//        TextView lifespan = holder.itemview.findViewById(R.id.lifespan);
-//        LinearLayout layout = holder.itemview.findViewById(R.id.dogLayout);
-//
-//        name.setText(dogsList.get(position).dogBreed);
-//        lifespan.setText(dogsList.get(position).lifeSpan);
-//        Util.loadImage(image, dogsList.get(position).imageUrl, Util.getProgressDrawable(image.getContext()));
-//        layout.setOnClickListener(view -> {
-//          ListFragmentDirections.ActionDetails action = ListFragmentDirections.actionDetails();
-//          action.setDogUuid(dogsList.get(position).uuid);
-//            Navigation.findNavController(layout).navigate(action);
-//        });
+        holder.itemview.setListener(this);
+
+    }
+
+    @Override
+    public void onDogClicked(View v) {
+        String uuidString = ((TextView)v.findViewById(R.id.dogId)).getText().toString();
+        int uuid = Integer.valueOf(uuidString);
+
+        ListFragmentDirections.ActionDetails action = ListFragmentDirections.actionDetails();
+        action.setDogUuid(uuid);
+        Navigation.findNavController(v).navigate(action);
     }
 
     @Override

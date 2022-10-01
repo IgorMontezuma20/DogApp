@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="dog"
             type="com.example.dogsapp.view.view.model.DogBreed" />
+        <variable
+            name="listener"
+            type="com.example.dogsapp.view.view.view.DogClickListener" />
     </data>
 
     <LinearLayout
         android:id="@+id/dogLayout"
         android:layout_width="match_parent"
         android:layout_height="125dp"
+        android:onClick="@{listener::onDogClicked}"
         android:orientation="horizontal">
+        
+        <TextView
+            android:id="@+id/dogId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@{String.valueOf(dog.uuid)}"/>
 
         <ImageView
             android:id="@+id/imageView"
@@ -35,6 +47,7 @@
                 style="@style/Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                tools:text="name"
                 android:text="@{dog.dogBreed}"/>
 
             <TextView
@@ -42,6 +55,7 @@
                 style="@style/Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                tools:text="life span"
                 android:text="@{dog.lifeSpan}" />
         </LinearLayout>
 
