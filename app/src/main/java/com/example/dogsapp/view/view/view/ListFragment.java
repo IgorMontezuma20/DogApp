@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -50,6 +53,7 @@ public class ListFragment extends Fragment {
 
         binding = FragmentListBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -98,4 +102,22 @@ public class ListFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.list_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.actionSettings: {
+                if ((isAdded())){
+                    Navigation.findNavController(getView()).navigate(ListFragmentDirections.actionSettings());
+                }
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

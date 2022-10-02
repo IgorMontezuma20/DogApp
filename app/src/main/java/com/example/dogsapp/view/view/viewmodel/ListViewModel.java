@@ -12,6 +12,7 @@ import com.example.dogsapp.view.view.model.DogBreed;
 import com.example.dogsapp.view.view.model.DogDao;
 import com.example.dogsapp.view.view.model.DogDatabase;
 import com.example.dogsapp.view.view.model.DogsApiService;
+import com.example.dogsapp.view.view.util.NotificationsHelper;
 import com.example.dogsapp.view.view.util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class ListViewModel extends AndroidViewModel {
 
     private AsyncTask<List<DogBreed>, Void, List<DogBreed>> insertTask;
     private AsyncTask<Void, Void, List<DogBreed>> retrieveTask;
+
+
 
     private SharedPreferencesHelper prefHelper = SharedPreferencesHelper.getInstance(getApplication());
     private long refreshTIme = 5 * 60 * 1000 * 1000 * 1000L;
@@ -74,6 +77,7 @@ public class ListViewModel extends AndroidViewModel {
                                 insertTask = new insertDogsaTask();
                                 insertTask.execute(dogBreeds);
                                 Toast.makeText(getApplication(), "Dados recuperados da API", Toast.LENGTH_SHORT).show();
+                                NotificationsHelper.getInstance(getApplication()).createNotification();
                             }
 
                             @Override
