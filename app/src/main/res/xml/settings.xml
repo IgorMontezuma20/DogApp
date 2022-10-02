@@ -7,7 +7,7 @@
         android:singleLine="true"
         android:inputType="number"
         android:selectAllOnFocus="true"
-        android:title="Cache duration in seconds"
+        android:title="Duração do cache em segundos."
         android:key="pref_cash_duration"/>
 
 
