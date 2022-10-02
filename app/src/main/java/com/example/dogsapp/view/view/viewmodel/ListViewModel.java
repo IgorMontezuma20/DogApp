@@ -38,17 +38,18 @@ public class ListViewModel extends AndroidViewModel {
 
 
     private SharedPreferencesHelper prefHelper = SharedPreferencesHelper.getInstance(getApplication());
-    private long refreshTIme = 5 * 60 * 1000 * 1000 * 1000L;
+    private long refreshTime = 5 * 60 * 1000 * 1000 * 1000L;
 
     public ListViewModel(@NonNull Application application) {
         super(application);
     }
 
     public void refresh() {
+        checkCacheDuration();
         long updateTime = prefHelper.getUpdateTime();
         long currentTime = System.nanoTime();
 
-        if(updateTime != 0 && currentTime - updateTime < refreshTIme){
+        if(updateTime != 0 && currentTime - updateTime < refreshTime){
             fetchFromDatabase();
         }else{
             fetchFromRemote();
@@ -57,6 +58,19 @@ public class ListViewModel extends AndroidViewModel {
 
     public void refreshByPassCache(){
         fetchFromRemote();
+    }
+
+    private void checkCacheDuration(){
+        String cachePreference = prefHelper.getCacheDuration();
+
+        if(!cachePreference.equals("")){
+            try{
+                int cachePreferenceInt = Integer.parseInt(cachePreference);
+                refreshTime = cachePreferenceInt * 1000 * 1000 * 1000L;
+            }catch (NumberFormatException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     private void fetchFromDatabase(){
