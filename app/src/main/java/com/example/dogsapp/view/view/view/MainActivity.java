@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -29,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment);
+        //fragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
 
         NavHostFragment finalHost = NavHostFragment.create(R.navigation.dogs_navigation);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment, finalHost)
+                .replace(R.id.nav_host_fragment, finalHost)
                 .setPrimaryNavigationFragment(finalHost)
                 .commit();
 
@@ -44,52 +45,52 @@ public class MainActivity extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
-    public void checkSmsPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)) {
-                new AlertDialog.Builder(this)
-                        .setTitle("Permissão para enviar SMS")
-                        .setMessage("Este aplicativo precisa de sua autorização para enviar SMS.")
-                        .setPositiveButton("Perguntar novamente", (dialogInterface, i) -> {
-                            requestSmsPermission();
-                        })
-                        .setNegativeButton("Negar", ((dialog, wich) -> {
-                            notifyDetailFragment(false);
-                        }))
-                        .show();
-            } else {
-                requestSmsPermission();
-            }
-        } else {
-            notifyDetailFragment(true);
-        }
-    }
+//    public void checkSmsPermission() {
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)) {
+//                new AlertDialog.Builder(this)
+//                        .setTitle("Permissão para enviar SMS")
+//                        .setMessage("Este aplicativo precisa de sua autorização para enviar SMS.")
+//                        .setPositiveButton("Perguntar novamente", (dialogInterface, i) -> {
+//                            requestSmsPermission();
+//                        })
+//                        .setNegativeButton("Negar", ((dialog, wich) -> {
+//                            notifyDetailFragment(false);
+//                        }))
+//                        .show();
+//            } else {
+//                requestSmsPermission();
+//            }
+//        } else {
+//            notifyDetailFragment(true);
+//        }
+//    }
 
     private void requestSmsPermission() {
         String[] permnissions = {Manifest.permission.SEND_SMS};
         ActivityCompat.requestPermissions(this, permnissions, PERMISSION_SEND_SMS);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode){
-            case PERMISSION_SEND_SMS: {
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    notifyDetailFragment(true);
-                }else{
-                    notifyDetailFragment(false);
-                }
-                break;
-            }
-        }
-
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    private void notifyDetailFragment(Boolean permissionGranted) {
-        Fragment activeFragment = fragment.getChildFragmentManager().getPrimaryNavigationFragment();
-        if(activeFragment instanceof DetailFragment){
-            ((DetailFragment) activeFragment).onPermissionResult(permissionGranted);
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        switch (requestCode){
+//            case PERMISSION_SEND_SMS: {
+//                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+//                    notifyDetailFragment(true);
+//                }else{
+//                    notifyDetailFragment(false);
+//                }
+//                break;
+//            }
+//        }
+//
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    }
+//
+//    private void notifyDetailFragment(Boolean permissionGranted) {
+//        Fragment activeFragment = fragment.getChildFragmentManager().getPrimaryNavigationFragment();
+//        if(activeFragment instanceof DetailFragment){
+//            ((DetailFragment) activeFragment).onPermissionResult(permissionGranted);
+//        }
+//    }
 }
